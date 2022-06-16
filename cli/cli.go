@@ -1,7 +1,6 @@
 package cli
 
 import (
-	// "log"
 	"fmt"
 	"log"
 	"os"

@@ -13,6 +13,16 @@ type ServerInfo struct {
 	Db       string
 }
 
+func GetConfigFilePath() string {
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fileName := homeDir + "/.configrcli.json"
+	return fileName
+}
+
 //Save server ip and password in a config file
 func WriteConfig(ipHost string, pass string, db string) {
 	data := ServerInfo{ipHost, pass, db}
@@ -22,20 +32,15 @@ func WriteConfig(ipHost string, pass string, db string) {
 		log.Println(err)
 	}
 
-	homeDir, err := os.UserHomeDir()
-	if err != nil {
-		log.Fatal(err)
-	}
+	configPath := GetConfigFilePath()
 
-	fileName := homeDir + "/.configrcli.json"
-
-	file, err := os.Create(fileName)
+	file, err := os.Create(configPath)
 	if err != nil {
 		log.Fatal(err)
 	}
 	file.Close()
 
-	err = ioutil.WriteFile(fileName, dataJson, 0644)
+	err = ioutil.WriteFile(configPath, dataJson, 0644)
 	if err != nil {
 		log.Println(err)
 	}
@@ -43,14 +48,9 @@ func WriteConfig(ipHost string, pass string, db string) {
 
 //Read configs from the config file
 func ReadConfig() ServerInfo {
-	homeDir, err := os.UserHomeDir()
-	if err != nil {
-		log.Fatal(err)
-	}
+	configPath := GetConfigFilePath()
 
-	fileName := homeDir + "/.configrcli.json"
-
-	jsonData, err := ioutil.ReadFile(fileName)
+	jsonData, err := ioutil.ReadFile(configPath)
 
 	if err != nil {
 		log.Println(err)
@@ -69,14 +69,9 @@ func ReadConfig() ServerInfo {
 
 //Check if config file exists
 func CheckConfig() bool {
-	homeDir, err := os.UserHomeDir()
-	if err != nil {
-		log.Fatal(err)
-	}
+	configPath := GetConfigFilePath()
 
-	fileName := homeDir + "/.configrcli.json"
-
-	if _, err := os.Stat(fileName); err == nil {
+	if _, err := os.Stat(configPath); err == nil {
 		return true
 	} else {
 		return false

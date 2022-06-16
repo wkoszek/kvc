@@ -2,8 +2,7 @@ FROM golang:1.18
 
 COPY . /go/src
 
-RUN apt update
-RUN apt install -y redis-server
+RUN apt update && apt install -y redis-server
 
 WORKDIR /go/src
 
