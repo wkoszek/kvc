@@ -13,20 +13,21 @@ make build
 docker build -t rcli-img .
 docker run -d --name rcli-test rcli-img 
 docker exec -it rcli-test bash
-rcli configcl localhost:6379
+rcli config localhost:6379
 ```
 
 ## Supported commands
 ```
-      configcl         rcli configcl [ip:port] [password] [db(integer)]
-      set              rcli set key value
-      get              rcli get key
-      del              rcli del key
-      lpop             rcli lpop key
-      lpush            rcli lpush key value
-      lrange           rcli lrange key start stop
-      hmset            rcli hmset key field value
-      hgetall          rcli hgetall key
-      hget             rcli hget key field
-      hdel             rcli hdel key field
+  config      Set ip address and port number for redis server
+  set         This command sets the value at the specified key
+  del         This command deletes the key, if it exists
+  get         Gets the value of a key
+  hdel        Deletes one or more hash fields
+  help        Help about any command
+  hget        Gets the value of a hash field stored at the specified key
+  hgetall     Gets all the fields and values stored in a hash at the specified key
+  hmset       Sets multiple hash fields to multiple values
+  lpop        Removes and gets the first element in a list
+  lpush       Prepends a value to a list
+  lrange      Gets a range of elements from a list
 ```

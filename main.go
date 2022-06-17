@@ -1,11 +1,7 @@
 package main
 
-import (
-	"github.com/ramin0x53/rcli/cli"
-	"github.com/ramin0x53/rcli/redis"
-)
+import "github.com/wkoszek/rcli/cmd"
 
 func main() {
-	args := cli.GetOptions()
-	redis.RedisRunner(args)
+	cmd.Execute()
 }
