@@ -1,10 +1,10 @@
 FROM golang:1.18
 
+WORKDIR /go/src
+
 COPY . /go/src
 
 RUN apt update && apt install -y redis-server
-
-WORKDIR /go/src
 
 RUN make install
 
