@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"log"
-
 	"github.com/spf13/cobra"
 )
 
@@ -12,13 +10,14 @@ var setCmd = &cobra.Command{
 	Short:   "This command sets the value at the specified key",
 	Long:    `This command sets the value at the specified key`,
 	Example: "rcli set name John",
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		ctx, rdb := RedisConfiguration()
 		ArgsNumberCheck(2, len(args))
 		err := rdb.Set(ctx, args[0], args[1], 0).Err()
 		if err != nil {
-			log.Println(err)
+			return err
 		}
+		return nil
 	},
 }
 

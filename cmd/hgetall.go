@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"log"
 
 	"github.com/spf13/cobra"
 )
@@ -13,17 +12,18 @@ var hgetallCmd = &cobra.Command{
 	Short:   "Gets all the fields and values stored in a hash at the specified key",
 	Long:    `Gets all the fields and values stored in a hash at the specified key`,
 	Example: "rcli hgetall user",
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		ctx, rdb := RedisConfiguration()
 		ArgsNumberCheck(1, len(args))
 		val, err := rdb.HGetAll(ctx, args[0]).Result()
 		if err != nil {
-			log.Println(err)
+			return err
 		}
 
 		for key, element := range val {
 			fmt.Println(key, ": ", element)
 		}
+		return nil
 	},
 }
 

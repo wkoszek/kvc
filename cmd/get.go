@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"log"
 
 	"github.com/spf13/cobra"
 )
@@ -14,14 +13,15 @@ var getCmd = &cobra.Command{
 	Long:               `Gets the value of a key`,
 	Example:            "rcli get name",
 	DisableFlagParsing: false,
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		ctx, rdb := RedisConfiguration()
 		ArgsNumberCheck(1, len(args))
 		val, err := rdb.Get(ctx, args[0]).Result()
 		if err != nil {
-			log.Println(err)
+			return err
 		}
 		fmt.Println(val)
+		return nil
 	},
 }
 

@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"log"
 
 	"github.com/spf13/cobra"
 )
@@ -13,14 +12,15 @@ var hgetCmd = &cobra.Command{
 	Short:   "Gets the value of a hash field stored at the specified key",
 	Long:    `Gets the value of a hash field stored at the specified key`,
 	Example: "rcli hget user name",
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		ctx, rdb := RedisConfiguration()
 		ArgsNumberCheck(2, len(args))
 		val, err := rdb.HGet(ctx, args[0], args[1]).Result()
 		if err != nil {
-			log.Println(err)
+			return err
 		}
 		fmt.Println(val)
+		return nil
 	},
 }
 

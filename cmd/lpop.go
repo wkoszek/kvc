@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"log"
-
 	"github.com/spf13/cobra"
 )
 
@@ -12,13 +10,14 @@ var lpopCmd = &cobra.Command{
 	Short:   "Removes and gets the first element in a list",
 	Long:    `Removes and gets the first element in a list`,
 	Example: "rcli lpop names",
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		ctx, rdb := RedisConfiguration()
 		ArgsNumberCheck(1, len(args))
 		err := rdb.LPop(ctx, args[0]).Err()
 		if err != nil {
-			log.Println(err)
+			return err
 		}
+		return nil
 	},
 }
 

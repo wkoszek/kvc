@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"log"
-
 	"github.com/spf13/cobra"
 )
 
@@ -12,13 +10,14 @@ var delCmd = &cobra.Command{
 	Short:   "This command deletes the key, if it exists",
 	Long:    `This command deletes the key, if it exists`,
 	Example: "rcli del name",
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		ctx, rdb := RedisConfiguration()
 		ArgsNumberCheck(1, len(args))
 		err := rdb.Del(ctx, args...).Err()
 		if err != nil {
-			log.Println(err)
+			return err
 		}
+		return nil
 	},
 }
 
