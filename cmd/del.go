@@ -14,7 +14,7 @@ var delCmd = &cobra.Command{
 	Example: "rcli del name",
 	Run: func(cmd *cobra.Command, args []string) {
 		ctx, rdb := RedisConfiguration()
-		ArgsCountCheck(1, len(args))
+		ArgsNumberCheck(1, len(args))
 		err := rdb.Del(ctx, args...).Err()
 		if err != nil {
 			log.Println(err)

@@ -15,7 +15,7 @@ var hgetallCmd = &cobra.Command{
 	Example: "rcli hgetall user",
 	Run: func(cmd *cobra.Command, args []string) {
 		ctx, rdb := RedisConfiguration()
-		ArgsCountCheck(1, len(args))
+		ArgsNumberCheck(1, len(args))
 		val, err := rdb.HGetAll(ctx, args[0]).Result()
 		if err != nil {
 			log.Println(err)

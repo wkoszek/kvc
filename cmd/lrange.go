@@ -15,7 +15,7 @@ var lrangeCmd = &cobra.Command{
 	Example: "rcli lrange names 0 10",
 	Run: func(cmd *cobra.Command, args []string) {
 		ctx, rdb := RedisConfiguration()
-		ArgsCountCheck(3, len(args))
+		ArgsNumberCheck(3, len(args))
 		val, err := rdb.LRange(ctx, args[0], int64(IntConv(args[1])), int64(IntConv(args[2]))).Result()
 		if err != nil {
 			log.Println(err)

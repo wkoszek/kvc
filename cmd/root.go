@@ -23,8 +23,8 @@ func RedisConfiguration() (context.Context, redis.Client) {
 	return ctx, *rdb
 }
 
-//Check count of args
-func ArgsCountCheck(n int, lenArgs int) {
+//Check number of args
+func ArgsNumberCheck(n int, lenArgs int) {
 	if lenArgs < n {
 		fmt.Printf("This function needs at least %d arguments\n", n)
 		os.Exit(0)

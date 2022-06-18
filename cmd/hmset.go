@@ -14,7 +14,7 @@ var hmsetCmd = &cobra.Command{
 	Example: "rcli hmset user name John",
 	Run: func(cmd *cobra.Command, args []string) {
 		ctx, rdb := RedisConfiguration()
-		ArgsCountCheck(2, len(args))
+		ArgsNumberCheck(2, len(args))
 		err := rdb.HMSet(ctx, args[0], args[1:]).Err()
 		if err != nil {
 			log.Println(err)

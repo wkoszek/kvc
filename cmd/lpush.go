@@ -14,7 +14,7 @@ var lpushCmd = &cobra.Command{
 	Example: "rcli lpush names John",
 	Run: func(cmd *cobra.Command, args []string) {
 		ctx, rdb := RedisConfiguration()
-		ArgsCountCheck(2, len(args))
+		ArgsNumberCheck(2, len(args))
 		err := rdb.LPush(ctx, args[0], args[1:]).Err()
 		if err != nil {
 			log.Println(err)
