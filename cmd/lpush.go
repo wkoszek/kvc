@@ -26,5 +26,4 @@ var lpushCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(lpushCmd)
-
 }

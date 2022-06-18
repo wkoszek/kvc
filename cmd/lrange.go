@@ -31,5 +31,4 @@ var lrangeCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(lrangeCmd)
-
 }

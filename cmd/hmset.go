@@ -26,5 +26,4 @@ var hmsetCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(hmsetCmd)
-
 }

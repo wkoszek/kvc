@@ -26,5 +26,4 @@ var lpopCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(lpopCmd)
-
 }

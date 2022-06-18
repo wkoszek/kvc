@@ -28,5 +28,4 @@ func init() {
 	configCmd.Flags().StringVar(&serverIP, "ip", "", "Redis server ip and port [ip:port]")
 	configCmd.Flags().StringVar(&password, "pass", "", "Redis server password")
 	configCmd.Flags().StringVar(&db, "db", "0", "Redis server db number")
-
 }

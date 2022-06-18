@@ -26,5 +26,4 @@ var delCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(delCmd)
-
 }
