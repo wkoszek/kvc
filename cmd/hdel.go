@@ -14,6 +14,7 @@ var hdelCmd = &cobra.Command{
 	Example: "rcli hdel user name",
 	Run: func(cmd *cobra.Command, args []string) {
 		ctx, rdb := RedisConfiguration()
+		ArgsCountCheck(2, len(args))
 		err := rdb.HDel(ctx, args[0], args[1:]...).Err()
 		if err != nil {
 			log.Println(err)

@@ -14,6 +14,7 @@ var setCmd = &cobra.Command{
 	Example: "rcli set name John",
 	Run: func(cmd *cobra.Command, args []string) {
 		ctx, rdb := RedisConfiguration()
+		ArgsCountCheck(2, len(args))
 		err := rdb.Set(ctx, args[0], args[1], 0).Err()
 		if err != nil {
 			log.Println(err)

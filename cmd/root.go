@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -20,6 +21,14 @@ func RedisConfiguration() (context.Context, redis.Client) {
 	})
 	ctx := context.Background()
 	return ctx, *rdb
+}
+
+//Check count of args
+func ArgsCountCheck(n int, lenArgs int) {
+	if lenArgs < n {
+		fmt.Printf("This function needs at least %d arguments\n", n)
+		os.Exit(0)
+	}
 }
 
 // rootCmd represents the base command when called without any subcommands

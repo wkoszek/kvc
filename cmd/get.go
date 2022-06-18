@@ -16,6 +16,7 @@ var getCmd = &cobra.Command{
 	DisableFlagParsing: false,
 	Run: func(cmd *cobra.Command, args []string) {
 		ctx, rdb := RedisConfiguration()
+		ArgsCountCheck(1, len(args))
 		val, err := rdb.Get(ctx, args[0]).Result()
 		if err != nil {
 			log.Println(err)

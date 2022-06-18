@@ -14,6 +14,7 @@ var lpopCmd = &cobra.Command{
 	Example: "rcli lpop names",
 	Run: func(cmd *cobra.Command, args []string) {
 		ctx, rdb := RedisConfiguration()
+		ArgsCountCheck(1, len(args))
 		err := rdb.LPop(ctx, args[0]).Err()
 		if err != nil {
 			log.Println(err)

@@ -15,6 +15,7 @@ var hgetCmd = &cobra.Command{
 	Example: "rcli hget user name",
 	Run: func(cmd *cobra.Command, args []string) {
 		ctx, rdb := RedisConfiguration()
+		ArgsCountCheck(2, len(args))
 		val, err := rdb.HGet(ctx, args[0], args[1]).Result()
 		if err != nil {
 			log.Println(err)
