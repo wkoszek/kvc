@@ -11,15 +11,16 @@ import (
 	"github.com/wkoszek/rcli/config"
 )
 
-var (
-	configData = config.ReadConfig()
-	rdb        = redis.NewClient(&redis.Options{
+func RedisConfiguration() (context.Context, redis.Client) {
+	configData := config.ReadConfig()
+	rdb := redis.NewClient(&redis.Options{
 		Addr:     configData.Ip,
 		Password: configData.Password,
 		DB:       IntConv(configData.Db),
 	})
-	ctx = context.Background()
-)
+	ctx := context.Background()
+	return ctx, *rdb
+}
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{

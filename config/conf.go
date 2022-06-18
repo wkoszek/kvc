@@ -50,16 +50,13 @@ func WriteConfig(ipHost string, pass string, db string) {
 //Read configs from the config file
 func ReadConfig() ServerInfo {
 
-	if !CheckConfig() {
-		return ServerInfo{"", "", "0"}
-	}
-
 	configPath := GetConfigFilePath()
 
 	jsonData, err := ioutil.ReadFile(configPath)
 
 	if err != nil {
-		log.Println(err)
+		fmt.Println("First, enter the server IP and Password with the following command:\n     rcli config")
+		log.Fatal(err)
 	}
 
 	var data ServerInfo
@@ -71,23 +68,4 @@ func ReadConfig() ServerInfo {
 	}
 
 	return data
-}
-
-//Check if config file exists
-func CheckConfig() bool {
-	configPath := GetConfigFilePath()
-
-	if _, err := os.Stat(configPath); err != nil {
-		return false
-	}
-	return true
-}
-
-func CheckConfExit() {
-	exist := CheckConfig()
-
-	if !exist {
-		fmt.Println("First, enter the server IP and Password with the following command:\n     rcli config")
-		os.Exit(0)
-	}
 }
