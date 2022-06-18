@@ -4,8 +4,6 @@ WORKDIR /go/src
 
 COPY . /go/src
 
-RUN apt update && apt install -y redis-server
-
-RUN make install
+RUN apt update && apt install -y redis-server && make install
 
 ENTRYPOINT redis-server --protected-mode no
