@@ -8,14 +8,13 @@ import (
 
 // getCmd represents the get command
 var getCmd = &cobra.Command{
-	Use:                "get",
-	Short:              "Gets the value of a key",
-	Long:               `Gets the value of a key`,
-	Example:            "rcli get name",
-	DisableFlagParsing: false,
+	Use:     "get",
+	Short:   "Gets the value of a key",
+	Long:    `Gets the value of a key`,
+	Example: "rcli get name",
+	Args:    cobra.ExactArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		ctx, rdb := RedisConfiguration()
-		ArgsNumberCheck(1, len(args))
 		val, err := rdb.Get(ctx, args[0]).Result()
 		if err != nil {
 			return err
