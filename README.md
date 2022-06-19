@@ -13,7 +13,7 @@ make build
 docker build -t rcli-img .
 docker run -d --name rcli-test rcli-img 
 docker exec -it rcli-test bash
-rcli config localhost:6379
+rcli config --ip localhost:6379
 ```
 
 ## Supported commands
