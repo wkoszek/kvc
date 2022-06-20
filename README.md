@@ -4,7 +4,7 @@ Easy to use Redis CLI that can be used from the command line mode.
 
 ## Build:
 ```
-git clone https://github.com/ramin0x53/rcli.git
+git clone https://github.com/wkoszek/rcli.git
 cd ./rcli
 make build
 ```
@@ -13,7 +13,7 @@ make build
 docker build -t rcli-img .
 docker run -d --name rcli-test rcli-img 
 docker exec -it rcli-test bash
-rcli config localhost:6379
+rcli config --ip localhost:6379
 ```
 
 ## Supported commands

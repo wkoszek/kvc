@@ -10,9 +10,9 @@ var delCmd = &cobra.Command{
 	Short:   "This command deletes the key, if it exists",
 	Long:    `This command deletes the key, if it exists`,
 	Example: "rcli del name",
+	Args:    cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		ctx, rdb := RedisConfiguration()
-		ArgsNumberCheck(1, len(args))
 		err := rdb.Del(ctx, args...).Err()
 		if err != nil {
 			return err

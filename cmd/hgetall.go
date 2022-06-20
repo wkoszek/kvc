@@ -12,9 +12,9 @@ var hgetallCmd = &cobra.Command{
 	Short:   "Gets all the fields and values stored in a hash at the specified key",
 	Long:    `Gets all the fields and values stored in a hash at the specified key`,
 	Example: "rcli hgetall user",
+	Args:    cobra.ExactArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		ctx, rdb := RedisConfiguration()
-		ArgsNumberCheck(1, len(args))
 		val, err := rdb.HGetAll(ctx, args[0]).Result()
 		if err != nil {
 			return err
